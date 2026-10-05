@@ -7,4 +7,7 @@ if ! command -v zip &> /dev/null; then echo "Error: zip is not installed."
 fi
 
 read -p "Enter a project name: " project_name
-echo "Project will be created at: attendance_tracker_$project_name"
+
+if [ -d "attendance_tracker_$project_name" ]; then
+    echo "Directory already exists!"
+fi
