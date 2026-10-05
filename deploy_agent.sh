@@ -9,5 +9,11 @@ fi
 read -p "Enter a project name: " project_name
 
 if [ -d "attendance_tracker_$project_name" ]; then
-    echo "Directory already exists!"
+    read -p "Directory already exists. Overwrite? (y/n): " answer
+    if [ "$answer" = "y" ]; then
+        echo "Overwriting..."
+    else
+        echo "Aborting."
+        exit 1
+    fi
 fi
