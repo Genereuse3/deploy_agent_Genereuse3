@@ -29,7 +29,10 @@ echo "Template files copied."
 read -p "Choose roster option - (A) Copy from template or (B) Generate fresh: " roster_choice
 
 if [ "$roster_choice" = "A" ] || [ "$roster_choice" = "a" ]; then
-    echo "You chose to copy from template."
+    read -p "How many students to copy? " num_students
+    lines_needed=$((num_students + 1))
+    head -n "$lines_needed" templates/assets.csv > "attendance_tracker_$project_name/Helpers/assets.csv"
+    echo "Copied $num_students students from template."
 elif [ "$roster_choice" = "B" ] || [ "$roster_choice" = "b" ]; then
     echo "You chose to generate fresh."
 else
