@@ -45,7 +45,9 @@ elif [ "$roster_choice" = "B" ] || [ "$roster_choice" = "b" ]; then
     for i in $(seq 0 "$last_index"); do
         echo "${emails[$i]},${names[$i]},0,0" >> "attendance_tracker_$project_name/Helpers/assets.csv"
     done
-    echo "Generated $num_students fresh students."
+
+    sed -i 's/"total_sessions": 5/"total_sessions": 1/' "attendance_tracker_$project_name/Helpers/config.json"
+    echo "Generated $num_students fresh students. total_sessions set to 1."
 
 else
     echo "Invalid choice."
