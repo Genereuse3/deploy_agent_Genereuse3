@@ -33,8 +33,20 @@ if [ "$roster_choice" = "A" ] || [ "$roster_choice" = "a" ]; then
     lines_needed=$((num_students + 1))
     head -n "$lines_needed" templates/assets.csv > "attendance_tracker_$project_name/Helpers/assets.csv"
     echo "Copied $num_students students from template."
+
 elif [ "$roster_choice" = "B" ] || [ "$roster_choice" = "b" ]; then
-    echo "You chose to generate fresh."
+    names=("Zara Khan" "Liam Chen" "Maya Patel" "Noah Garcia" "Priya Sharma" "Omar Haddad" "Lena Novak" "Kofi Boateng" "Mei Tanaka" "Sofia Rossi")
+    emails=("zara@example.com" "liam@example.com" "maya@example.com" "noah@example.com" "priya@example.com" "omar@example.com" "lena@example.com" "kofi@example.com" "mei@example.com" "sofia@example.com")
+
+    read -p "How many students to generate? " num_students
+    last_index=$((num_students - 1))
+
+    echo "Email,Names,Attendance Count,Absence Count" > "attendance_tracker_$project_name/Helpers/assets.csv"
+    for i in $(seq 0 "$last_index"); do
+        echo "${emails[$i]},${names[$i]},0,0" >> "attendance_tracker_$project_name/Helpers/assets.csv"
+    done
+    echo "Generated $num_students fresh students."
+
 else
     echo "Invalid choice."
 fi
