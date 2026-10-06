@@ -17,3 +17,7 @@ if [ -d "attendance_tracker_$project_name" ]; then
         exit 1
     fi
 fi
+
+mkdir -p "attendance_tracker_$project_name/Helpers"
+mkdir -p "attendance_tracker_$project_name/reports"
+echo "Directory structure created."
