@@ -21,3 +21,7 @@ fi
 mkdir -p "attendance_tracker_$project_name/Helpers"
 mkdir -p "attendance_tracker_$project_name/reports"
 echo "Directory structure created."
+
+cp templates/attendance_checker.py "attendance_tracker_$project_name/attendance_checker.py"
+cp templates/config.json "attendance_tracker_$project_name/Helpers/config.json"
+echo "Template files copied."
