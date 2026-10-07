@@ -52,3 +52,7 @@ elif [ "$roster_choice" = "B" ] || [ "$roster_choice" = "b" ]; then
 else
     echo "Invalid choice."
 fi
+
+chmod +x "attendance_tracker_$project_name/attendance_checker.py"
+chmod 600 "attendance_tracker_$project_name/Helpers/config.json"
+echo "Permissions set: attendance_checker.py is executable, config.json is owner read/write only."
