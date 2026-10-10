@@ -87,14 +87,30 @@ run_app() {
     cd "attendance_tracker_$Gen"
     python3 attendance_checker.py
 }
+
 archive_logs() {
-echo "Archive not built yet."
+    read -p "Enter the project name to archive: " Gen
+    if [ ! -d "attendance_tracker_$Gen" ]; then
+        echo "Error: project not found."
+        return 1
+    fi
+
+    mkdir -p "attendance_tracker_$Gen/archives/attendance"
+    mkdir -p "attendance_tracker_$Gen/archives/absent"
+
+    timestamp=$(date +%Y%m%d_%H%M%S)
+
+    if [ -f "attendance_tracker_$Gen/reports/attendance.log" ]; then
+        mv "attendance_tracker_$Gen/reports/attendance.log" "attendance_tracker_$Gen/archives/attendance/attendance_$timestamp.log"
+        echo "Archived: attendance_tracker_$Gen/archives/attendance/attendance_$timestamp.log"
+    else
+        echo "attendance.log not found, nothing to archive."
+    fi
+
+    if [ -f "attendance_tracker_$Gen/reports/absent.log" ]; then
+        mv "attendance_tracker_$Gen/reports/absent.log" "attendance_tracker_$Gen/archives/absent/absent_$timestamp.log"
+        echo "Archived: attendance_tracker_$Gen/archives/absent/absent_$timestamp.log"
+    else
+        echo "absent.log not found, nothing to archive."
+    fi
 }
-echo "1) Deploy 2) Run 3) Archive"
-read -p "Choose a feature: " choice
-case "$choice" in
-1) deploy_project ;;
-2) run_app ;;
-3) archive_logs ;;
-*) echo "Invalid choice." ;;
-esac
