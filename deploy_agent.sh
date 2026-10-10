@@ -1,3 +1,4 @@
+deploy_project() {
 if ! command -v python3 &> /dev/null; then echo "Error: python3 is not installed."
         exit 1
 fi
@@ -74,3 +75,4 @@ if [ "$update_choice" = "y" ]; then
         echo "Error: thresholds must be numbers. Keeping current values."
     fi
 fi
+}
