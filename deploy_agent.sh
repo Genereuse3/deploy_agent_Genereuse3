@@ -76,3 +76,14 @@ if [ "$update_choice" = "y" ]; then
     fi
 fi
 }
+
+run_app() {
+    read -p "Enter the project name to run: " Gen
+    if [ ! -d "attendance_tracker_$Gen" ]; then
+        echo "Error: project not found."
+        return 1
+    fi
+
+    cd "attendance_tracker_$Gen"
+    python3 attendance_checker.py
+}
