@@ -114,3 +114,13 @@ archive_logs() {
         echo "absent.log not found, nothing to archive."
     fi
 }
+
+echo "1) Deploy  2) Run  3) Archive"
+read -p "Choose a feature: " choice
+
+case "$choice" in
+    1) deploy_project ;;
+    2) run_app ;;
+    3) archive_logs ;;
+    *) echo "Invalid choice." ;;
+esac
