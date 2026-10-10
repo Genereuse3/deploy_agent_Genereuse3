@@ -87,3 +87,14 @@ run_app() {
     cd "attendance_tracker_$Gen"
     python3 attendance_checker.py
 }
+archive_logs() {
+echo "Archive not built yet."
+}
+echo "1) Deploy 2) Run 3) Archive"
+read -p "Choose a feature: " choice
+case "$choice" in
+1) deploy_project ;;
+2) run_app ;;
+3) archive_logs ;;
+*) echo "Invalid choice." ;;
+esac
