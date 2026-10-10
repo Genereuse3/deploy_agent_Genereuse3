@@ -56,3 +56,15 @@ fi
 chmod +x "attendance_tracker_$project_name/attendance_checker.py"
 chmod 600 "attendance_tracker_$project_name/Helpers/config.json"
 echo "Permissions set: attendance_checker.py is executable, config.json is owner read/write only."
+
+read -p "Update alert thresholds? (y/n): " update_choice
+
+if [ "$update_choice" = "y" ]; then
+    read -p "Enter warning threshold (default 75): " warning_val
+    read -p "Enter failure threshold (default 50): " failure_val
+
+    sed -i "s/\"warning\": [0-9]*/\"warning\": $warning_val/" "attendance_tracker_$project_name/Helpers/config.json"
+    sed -i "s/\"failure\": [0-9]*/\"failure\": $failure_val/" "attendance_tracker_$project_name/Helpers/config.json"
+
+    echo "Thresholds updated: warning=$warning_val, failure=$failure_val"
+fi
